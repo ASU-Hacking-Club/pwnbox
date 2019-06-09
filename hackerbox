@@ -1,0 +1,28 @@
+Install:
+
+Reversing:
+z3
+angr (make this the base image)
+gef
+ghidra
+r2
+peda
+
+Pwning:
+pwntools
+ropper
+ROPgadget
+
+Crypto:
+sagemath
+numpy
+
+Swag:
+Terminator
+[My .bashrc]
+[My .terminator]
+[Eriks cool ssh layout] 
+ipython2 & 3
+vim
+Vundle [with setup]
+
