@@ -18,13 +18,20 @@ RUN cp /tmp/pwnbox/enviornment/bash/.bashrc /home/angr/ && \
     printf '\nworkon angr\n' >> /home/angr/.bashrc
 
 # setup vim to be awesome
-RUN cp /tmp/pwnbox/enviornment/vim/.vimrc /home/angr/ && \
-    mkdir ~/.vim/ && \
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && \
-    echo | echo | vim +PluginInstall +qall &>/dev/null 
-    #sleep 50
-    
-    #python3 ~/.vim/bundle/youcompleteme/install.py --all
-    #echo | echo | vim +PluginInstall +qall &>/dev/null 
-    #/bin/bash /tmp/pwnbox/enviornment/vim/install.sh 
-    
+#RUN mkdir /home/angr/.vim/ && \
+#    cp /tmp/pwnbox/enviornment/vim/.vimrc /home/angr/.vim/vundle.vim && \
+#    git clone https://github.com/VundleVim/Vundle.vim.git /home/angr/.vim/bundle/Vundle.vim && \
+#    vim -E -u NONE -S /home/angr/.vim/vundle.vim +PluginInstall +qall > /dev/null && \
+#    printf '\nworkon angr\n' >> /home/angr/.bashrc 
+#    #python3 ~/.vim/bundle/youcompleteme/install.py --all
+#    #echo | echo | vim +PluginInstall +qall &>/dev/null 
+#    #/bin/bash /tmp/pwnbox/enviornment/vim/install.sh 
+
+# ----- RE Tools ----- #
+
+
+# ----- pwn Tools ----- #
+
+# ----- Crypto Tools ----- #
+
+# ----- Extra Tools ----- #     
