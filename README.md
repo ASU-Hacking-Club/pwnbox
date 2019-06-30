@@ -21,7 +21,7 @@ which will start the container, and delete it after usage.
 Often, we want to save data generated in pwnbox or simply use data stored on our host machine.
 To mount a volume from your host computer into pwnbox do:
 ```bash
-docker run -it --rm -v /path/in/pwnbox/:/path/in/host/ pwndevils/pwnbox
+docker run -it --rm -v /path/in/host/:/path/in/pwnbox/ pwndevils/pwnbox
 ``` 
 
 
