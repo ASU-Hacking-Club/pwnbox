@@ -29,6 +29,11 @@ RUN apt-get update && \
     python2 get-pip.py && \
     pip2 install ipython   
 
+# install CTF-Tools reqs
+RUN apt-get-install build-essential libtool g++ gcc \
+    texinfo curl wget automake autoconf python python-dev git subversion \
+    unzip virtualenvwrapper sudo git virtualenvwrapper ca-certificates
+
 # setup vim to be awesome
 #RUN mkdir /home/angr/.vim/ && \
 #    cp /tmp/pwnbox/enviornment/vim/.vimrc /home/angr/.vim/vundle.vim && \
@@ -80,6 +85,14 @@ RUN pip2 install ROPGadget && \
 RUN pip3 install sagemath numpy 
 
 
+# ----- CTF Tools @zardus ----- #
+
+# get the ctf tools repo 
+RUN cd /home/angr/ && git clone https://github.com/zardus/ctf-tools && \
+    cd ctf-tools && \
+    docker build -t ctf-tools .
+
+
 # ----- Extra Tools ----- #
 # sick sparky and team logo print!  
 RUN echo "echo 'pwnbox is brought to you by: \n'" >> /home/angr/.bashrc 
@@ -87,3 +100,5 @@ RUN echo 'base64 -d <<< "IF8gIChgLScpICAgICAuLT4gICA8LS4gKGAtJylfICBfKGAtJykgICA
 RUN echo "echo '\n\n'" >> /home/angr/.bashrc 
 RUN echo 'base64 -d <<< "ICAgICAgICAgICAgICYmICAgICAgICAgICAgICAKICAgICAgICAmJiAmJiYmJiAgICAgICAgICAgICAKICAgICAgICAmJiYmJiYmLCwmICAgICAgICAgICAKICAgICAgICAgJiYsLCYsLCYsJiAgICAgICAgICAKICAgICAmJiYgJiYsLCwsLCwsLCYgICAgICAgICAKICAgICYmJiYmJiYmLCwsLCYmJiwmICAgICAgICAKICAmJiYmJiYmJiYsLC4mJiYmJiwmICAgICAgICAKICAgICYmJiAgJiYsLCwsLCYsLCYmICAgICAgICAKJiYgICYmJiYmICYmJiYmJiwmJiYmICAgICAgICAKJiYmJiAgJiYsJiYmJiYmJiYmJiYmICAgICAmJiAKICAgICYmJiYmJiwmJiYmJiYmJiYmJiYmICYmJiAKICAgICYmJiAmJiYmLCYmJiYmJiYmJiYmJiYmJiAKICAmJiYmJiAgJiYmJiYsJiYmJiYmJiYmJiYmJiAKICYmJiAmJiYmJiYmJiAgJiwgJiYmICYmJiYmICAKICAgICAmJiYmJiAgICAgICYmJiYgICAgJiYgICAKICAgICAgICAgICAgICAgICAmJiwsICwsJiAgICAKICAgICAgICAgICAgICAgICAgICYsLCYgICwsICAKICAgICAgICAgICAgICAgICAgICwsICYsJiAgICYKICAgICAgICAgICAgICAgICAgICAmLCAgJiwmICAKICAgICAgICAgICAgICAgICAgICAgICwgICAmJg=="' >> /home/angr/.bashrc 
 RUN echo "\necho '\n\n'" >> /home/angr/.bashrc 
+
+
