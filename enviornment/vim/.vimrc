@@ -22,6 +22,7 @@ Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 "Plugin 'file:///home/gmarik/path/to/plugin'
 
+"mahaloz plugins
 "You complete me auto completer
 Plugin 'valloric/youcompleteme'
 Plugin 'VundleVim/Vundle.vim'
@@ -87,10 +88,36 @@ endif
 set noshowmode
 "----------------------------
 "
-"----NERDTree Config---------
+"--------NERDTree Config---------
 "autocmd vimenter * NERDTree
 map <C-o> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"---------------------------
+"--------------------------------
 
+" Color fixing for tmux configs
+" Add this line to tmux:  set -g default-terminal "screen-256color"
+set background=dark
+
+"-----Word Processor Support-----
+func! WordProcessor()
+  " movement changes
+  map j gj
+  map k gk
+  " formatting text
+  " setlocal formatoptions=1
+  setlocal noexpandtab
+  setlocal wrap 
+  setlocal textwidth=80
+  " setlocal linebreak
+  " spelling and thesaurus
+  setlocal spell spelllang=en_us
+  set thesaurus+=/home/test/.vim/thesaurus/mthesaur.txt
+  " complete+=s makes autocompletion search the thesaurus
+  set complete+=s
+endfu
+com! WP call WordProcessor()
+
+"XXX:edit this line to add support for more file types
+au BufReadPost,BufNewFile *.md,*.txt,*.tex call WordProcessor() 
+"-------------------------------
