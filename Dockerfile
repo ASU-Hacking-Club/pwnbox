@@ -30,14 +30,14 @@ RUN apt-get update && \
     pip2 install ipython   
 
 # install CTF-Tools reqs
-RUN apt-get-install build-essential libtool g++ gcc \
+RUN apt-get install -y build-essential libtool g++ gcc \
     texinfo curl wget automake autoconf python python-dev git subversion \
     unzip virtualenvwrapper sudo git virtualenvwrapper ca-certificates
 
 # setup vim to be awesome
 #RUN mkdir /home/angr/.vim/ && \
 #    cp /tmp/pwnbox/enviornment/vim/.vimrc /home/angr/.vim/vundle.vim && \
-#    git clone https://github.com/VundleVim/Vundle.vim.git /home/angr/.vim/bundle/Vundle.vim && \
+RUN  git clone https://github.com/VundleVim/Vundle.vim.git /home/angr/.vim/bundle/Vundle.vim
 #    vim -E -u NONE -S /home/angr/.vim/vundle.vim +PluginInstall +qall > /dev/null && \
 #    printf '\nworkon angr\n' >> /home/angr/.bashrc 
 #    #python3 /home/angr/.vim/bundle/youcompleteme/install.py --all
@@ -89,11 +89,17 @@ RUN pip3 install sagemath numpy
 
 # get the ctf tools repo 
 RUN cd /home/angr/ && git clone https://github.com/zardus/ctf-tools && \
-    cd ctf-tools && \
-    docker build -t ctf-tools .
-
+    cd ctf-tools
 
 # ----- Extra Tools ----- #
+RUN apt-get update && apt-get install -y \
+    tmux \
+    xclip 
+
+ENV VIRTUALENVWRAPPER_PYTHON /home/angr/.virtualenvs/angr/bin/python 
+    
+RUN mv /tmp/pwnbox/enviornment/tmux/.tmux.conf /home/angr/.tmux.conf  
+
 # sick sparky and team logo print!  
 RUN echo "echo 'pwnbox is brought to you by: \n'" >> /home/angr/.bashrc 
 RUN echo 'base64 -d <<< "IF8gIChgLScpICAgICAuLT4gICA8LS4gKGAtJylfICBfKGAtJykgICAgKGAtJykgIF8gICAgICAoYC0nKSAgXyAgICAgICAgICAgICAgKGAtJykuLT4gCiBcLS4oT08gKSAoYChgLScpL2ApICAgXCggT08pICkoIChPTyApLi0+ICggT08pLi0vICAgICBfKE9PICkgKF8pICAgICAgPC0uICAgICggT08pXyAgIAogXy4nICAgIFwsLWAoIE9PKS4nLCwtLS4vICwtLS8gIFwgICAgLidfICgsLS0tLS0tLiwtLS4oXy8sLS5cICwtKGAtJyksLS0uICkgIChfKS0tXF8pICAKKF8uLi4tLScnfCAgfFwgIHwgIHx8ICAgXCB8ICB8ICAnYCctLi5fXykgfCAgLi0tLSdcICAgXCAvIChfLyB8ICggT08pfCAgKGAtJykvICAgIF8gLyAgCnwgIHxfLicgfHwgIHwgJy58ICB8fCAgLiAnfCAgfCkgfCAgfCAgJyB8KHwgICctLS4gIFwgICAvICAgLyAgfCAgfCAgKXwgIHxPTyApXF8uLmAtLS4gIAp8ICAuX19fLid8ICB8LicufCAgfHwgIHxcICAgIHwgIHwgIHwgIC8gOiB8ICAuLS0nIF8gXCAgICAgL18pKHwgIHxfLyh8ICAnX18gfC4tLl8pICAgXCAKfCAgfCAgICAgfCAgICwnLiAgIHx8ICB8IFwgICB8ICB8ICAnLScgIC8gfCAgYC0tLS5cLSdcICAgLyAgICB8ICB8Jy0+fCAgICAgfCdcICAgICAgIC8gCmAtLScgICAgIGAtLScgICAnLS0nYC0tJyAgYC0tJyAgYC0tLS0tLScgIGAtLS0tLS0nICAgIGAtJyAgICAgYC0tJyAgIGAtLS0tLScgIGAtLS0tLScg"' >> /home/angr/.bashrc 
