@@ -48,11 +48,10 @@ RUN  git clone https://github.com/VundleVim/Vundle.vim.git /home/angr/.vim/bundl
 # ----- RE Tools ----- #
 USER root
 
-# install gdb & peda 
+# install gdb & gef 
 RUN apt-get update && \
     apt-get install gdb -y && \
-    git clone https://github.com/longld/peda.git /home/angr/peda && \
-    echo "source /home/angr/peda/peda.py" >> /home/angr/.gdbinit
+    wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh 
 
 # install radare2
 WORKDIR /tmp 
