@@ -109,6 +109,7 @@ RUN apt-get update && apt-get install -y \
     tmux \
     xclip 
 
+# ----- Terminator Tmux ----- #
 RUN mv /tmp/pwnbox/enviornment/tmux/.tmux.conf /home/pwndevil/.tmux.conf  
 RUN mv /tmp/pwnbox/enviornment/tmux/.tmux /home/pwndevil/.tmux
 
