@@ -19,7 +19,7 @@ CMD su - pwndevil
 
 # create a cool looking terminal 
 WORKDIR /tmp
-RUN git clone https://github.com/pascal-0x90/pwnbox.git  
+RUN git clone https://github.com/mahaloz/pwnbox.git  
 WORKDIR /tmp/pwnbox 
 RUN git checkout master
 WORKDIR /home/pwndevil 
