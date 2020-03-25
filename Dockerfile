@@ -19,7 +19,7 @@ CMD su - pwndevil
 
 # create a cool looking terminal 
 WORKDIR /tmp
-RUN git clone https://github.com/mahaloz/pwnbox.git  
+RUN git clone https://github.com/pascal-0x90/pwnbox.git  
 WORKDIR /tmp/pwnbox 
 RUN git checkout master
 WORKDIR /home/pwndevil 
@@ -110,6 +110,7 @@ RUN apt-get update && apt-get install -y \
     xclip 
 
 RUN mv /tmp/pwnbox/enviornment/tmux/.tmux.conf /home/pwndevil/.tmux.conf  
+RUN mv /tmp/pwnbox/enviornment/tmux/.tmux /home/pwndevil/.tmux
 
 # sick sparky and team logo print!  
 RUN echo "echo 'pwnbox is brought to you by: \n'" >> /home/pwndevil/.bashrc 
