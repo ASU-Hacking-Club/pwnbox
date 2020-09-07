@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y sudo sshfs bsdutils python3-dev \
                             postgresql-client nasm binutils-multiarch llvm clang \
                             libpq-dev parallel libgraphviz-dev \
                             build-essential libxml2-dev libxslt1-dev git \
-                            libffi-dev cmake libreadline-dev libtool         
+                            libffi-dev cmake libreadline-dev libtool netcat net-tools 
 
 # rename main user to pwndevil
 USER root 
@@ -63,10 +63,9 @@ RUN  vim +PluginInstall +qall &>/dev/null
 # ----- RE Tools ----- #
 USER root
 
-# install gdb & gef 
+# install gdb
 RUN apt-get update && \
-    apt-get install gdb -y && \
-    wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh 
+    apt-get install gdb -y
 
 # install radare2
 WORKDIR /tmp 
@@ -80,6 +79,11 @@ RUN apt-get update && \
 
 # ----- PWN Tools ----- #
 USER pwndevil 
+
+# install pwndbg
+RUN git clone https://github.com/pwndbg/pwndbg && \
+    cd pwndbg && \
+    ./setup.sh 
 
 # install pwntools3
 RUN pip3 install --user pwntools 
