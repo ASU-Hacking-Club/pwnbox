@@ -87,11 +87,12 @@ RUN git clone https://github.com/pwndbg/pwndbg && \
 
 # install pwntools3
 RUN pip3 install --user pwntools 
+RUN pip3 uninstall six && pip3 install --user six
 
 # install ropper 3 
 RUN pip3 install ropper
 
-# install ROPGadget2 & 3 
+# install ROPGadget 3 
 RUN pip3 install --user ROPGadget     
 
 
