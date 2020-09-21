@@ -3,8 +3,8 @@ pwnbox is a dockerized environment for quick reversing and pwning. Essentially, 
 
 ## Installation
 Install [Docker](https://docs.docker.com/v17.12/install/).
-Since Docker is compatible with Windows, Linux, and OS X--with some caveats.
-Once installed, run:
+Since Docker is compatible with Windows, Linux, and OS X--with some caveats--pwnbox should be compatible with most OSes.
+once installed, run:
 ```bash
 docker pull pwndevils/pwnbox
 ```
